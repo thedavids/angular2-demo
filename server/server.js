@@ -27,7 +27,7 @@ app
         next(err);
     })
     // Start server
-    .listen(port, function () {
+    .listen(process.env.PORT || port, function () {
         console.log('Port: ' + port);
         console.log('Html: ' + html);
     });
