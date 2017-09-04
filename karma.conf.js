@@ -1,6 +1,6 @@
 module.exports = function(config) {
 
-  var appBase    = 'src/';       // transpiled app JS and map files
+  var appBase    = 'client/';       // transpiled app JS and map files
   var appSrcBase = appBase;      // app source TS files
   var appDistBase = 'dist/';      // app source TS files
 
@@ -81,7 +81,7 @@ module.exports = function(config) {
     // Proxied base paths for loading assets
     proxies: {
       // required for modules fetched by SystemJS
-      '/base/src/node_modules/': '/base/node_modules/'
+      '/base/client/node_modules/': '/base/node_modules/'
     },
 
     exclude: [],
