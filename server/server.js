@@ -19,13 +19,10 @@ app
     .use(express.static(html))
     .use('/node_modules', express.static(nodes_modules))
     // api
-    .use('/api/heroes', heroes)    
+    .use('/api/heroes', heroes)
     .all('/*', function(req, res) {
-        res.sendFile(html + '/index.html');
+        res.sendFile(path.join(html, 'index.html'));
     })
-    /*.use('/dashboard', express.static(html))
-    .use('/heroes', express.static(html))*/
-
     // 404
     .use(function (req, res, next) {
         var err = new Error('Not Found ' + req.url.toString());
