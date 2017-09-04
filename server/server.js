@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const compression = require('compression');
 const path = require('path');
 const express = require('express');
-const index = require('./routes/index.js');
+var heroes = require('./routes/heroes');
 var app = express();
 
 var html = path.join(__dirname, '../dist');
@@ -19,7 +19,13 @@ app
     .use(express.static(html))
     .use('/node_modules', express.static(nodes_modules))
     // api
-    .use('/', index)
+    .use('/api/heroes', heroes)    
+    .all('/*', function(req, res) {
+        res.sendFile(html + '/index.html');
+    })
+    /*.use('/dashboard', express.static(html))
+    .use('/heroes', express.static(html))*/
+
     // 404
     .use(function (req, res, next) {
         var err = new Error('Not Found ' + req.url.toString());
