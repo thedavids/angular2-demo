@@ -14,10 +14,45 @@ var heroes = [
     { id: 20, name: 'Tornado' }
 ];
 
-/* GET users listing. */
 router.get('/', function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     res.send({'heroes' : heroes});
+});
+
+router.post('/', function (req, res) {
+    var name = req.body.name;
+
+    var len = heroes.length;
+    var id = len > 0 ? heroes[len - 1].id + 1 : 1;
+
+    var hero = {id: id, name: name};
+    heroes.push(hero);
+    return res.send(hero);
+});
+
+router.put('/:id', function (req, res) {
+    var id = req.params.id;
+    var name = req.body.name;
+      
+    var hero = heroes.find(x => x.id == id);
+
+    if (hero !== undefined) {
+        hero.name = name || '';
+        return res.sendStatus(202);
+    }
+    return res.sendStatus(404);
+});
+
+router.delete('/:id', function (req, res) {
+    var id = req.params.id;
+    var lengthBefore = heroes.length;
+
+    heroes = heroes.filter(x => x.id != id);
+
+    if (lengthBefore !== heroes.length) {
+        return res.sendStatus(202);
+    }
+    return res.sendStatus(404);
 });
 
 module.exports = router;
