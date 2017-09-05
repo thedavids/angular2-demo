@@ -6,6 +6,12 @@ heroesContoller.getHeroes = function (req, res) {
     res.send({'heroes' : heroesService.getHeroes()});
 };
 
+heroesContoller.getHero = function (req, res) {
+    var id = req.params.id;
+    res.setHeader('Content-Type', 'application/json');
+    res.send(heroesService.getHero(id));
+};
+
 heroesContoller.postHero = function (req, res) {
     var name = req.body.name;
     res.setHeader('Content-Type', 'application/json');

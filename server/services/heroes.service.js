@@ -17,6 +17,10 @@ heroesService.getHeroes = function() {
     return db;
 };
 
+heroesService.getHero = function(id) {
+    return db.find(x => x.id == id);
+};
+
 heroesService.createHero = function(name) {
     var len = db.length;
     var id = len > 0 ? db[len - 1].id + 1 : 1;
