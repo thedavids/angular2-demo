@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const compression = require('compression');
 const path = require('path');
 const express = require('express');
-var heroes = require('./routes/heroes');
+var heroes = require('./routes/heroes.routes');
 var app = express();
 
 var html = path.join(__dirname, '../dist');
